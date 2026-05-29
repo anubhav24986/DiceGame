@@ -1,0 +1,316 @@
+/* ── Panel shell ──────────────────────────────────────────────────────────── */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 20px;
+  background: #0f172a;
+  border-left: 1px solid #1e293b;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.header {
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: 'Courier New', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 4px;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #475569;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ── Status badge ────────────────────────────────────────────────────────── */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.badgeLoading { background: #1e3a5f; color: #60a5fa; }
+.badgeError   { background: #450a0a; color: #f87171; }
+.badgeRolling { background: #1c1917; color: #facc15; animation: pulse 1s ease-in-out infinite; }
+.badgeReady   { background: #052e16; color: #4ade80; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+  border-top: 1px solid #1e293b;
+}
+
+/* ── Target input ────────────────────────────────────────────────────────── */
+.label {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.hint {
+  color: #475569;
+  font-size: 11px;
+}
+
+.targetRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input {
+  width: 72px;
+  padding: 8px 10px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.input:focus {
+  border-color: #3b82f6;
+}
+
+.input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Hide number input arrows */
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.input[type=number] { -moz-appearance: textfield; }
+
+.slider {
+  flex: 1;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.slider:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.targetHint {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #475569;
+  margin: 0;
+}
+
+.targetHint strong {
+  color: #94a3b8;
+}
+
+/* ── Roll button ─────────────────────────────────────────────────────────── */
+.rollBtn {
+  width: 100%;
+  padding: 14px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.rollBtn:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+}
+
+.rollBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.rollBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.rollBtnRolling {
+  background: #1e3a5f;
+  cursor: not-allowed;
+}
+
+.rollBtnInner {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.rollDot {
+  width: 8px;
+  height: 8px;
+  background: #60a5fa;
+  border-radius: 50%;
+  animation: dotBounce 0.8s ease-in-out infinite;
+}
+
+.rollDot:nth-child(2) { animation-delay: 0.15s; }
+.rollDot:nth-child(3) { animation-delay: 0.30s; }
+
+@keyframes dotBounce {
+  0%, 100% { transform: translateY(0);    opacity: 0.6; }
+  50%       { transform: translateY(-6px); opacity: 1; }
+}
+
+.shortcutHint {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #334155;
+  text-align: center;
+  margin: -4px 0 0;
+}
+
+/* ── Result display ──────────────────────────────────────────────────────── */
+.result {
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  animation: fadeSlide 0.3s ease-out;
+}
+
+.resultWin  { background: rgba(34, 197, 94, 0.12); border: 1px solid #166534; }
+.resultLose { background: rgba(239, 68, 68, 0.12);  border: 1px solid #7f1d1d; }
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.resultScore {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.resultNumber {
+  font-family: 'Courier New', monospace;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.resultWin  .resultNumber { color: #4ade80; }
+.resultLose .resultNumber { color: #f87171; }
+
+.resultVs {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  color: #94a3b8;
+}
+
+.resultLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.resultWin  .resultLabel { color: #4ade80; }
+.resultLose .resultLabel { color: #f87171; }
+
+/* ── Streaks ─────────────────────────────────────────────────────────────── */
+.streaks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.streakWin,
+.streakLose {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.streakWin  { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+.streakLose { background: rgba(239, 68, 68, 0.15);  color: #f87171; }
+
+/* ── Error box ───────────────────────────────────────────────────────────── */
+.errorBox {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid #7f1d1d;
+  border-radius: 8px;
+  color: #f87171;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+/* ── Footer / mute ───────────────────────────────────────────────────────── */
+.footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #1e293b;
+}
+
+.muteBtn {
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #64748b;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 8px 14px;
+  cursor: pointer;
+  width: 100%;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.muteBtn:hover {
+  color: #94a3b8;
+  border-color: #475569;
+}
+
+/* ── History wrapper ─────────────────────────────────────────────────────── */
+.historyWrapper {
+  border-top: 1px solid #1e293b;
+  padding-top: 16px;
+}

@@ -1,0 +1,90 @@
+.container {
+  border-top: 1px solid #1e293b;
+  padding-top: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.summary {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #334155;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.entryWin  { background: rgba(34, 197, 94, 0.07); }
+.entryLose { background: rgba(239, 68, 68, 0.07); }
+
+.index {
+  color: #334155;
+  font-size: 11px;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.result {
+  font-weight: 700;
+  width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.entryWin  .result { color: #4ade80; }
+.entryLose .result { color: #f87171; }
+
+.vs {
+  color: #475569;
+  flex: 1;
+  font-size: 12px;
+}
+
+.badge {
+  font-weight: 700;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.entryWin  .badge { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+.entryLose .badge { background: rgba(239, 68, 68, 0.2);  color: #f87171; }
